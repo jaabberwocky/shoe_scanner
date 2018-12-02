@@ -4,6 +4,12 @@ Uses a simple requests/BS4 combination, along with AWS Lambda and SNS topic, to 
 
 If it **indeed** has changed, a SMS is sent to subscribed users to alert them.
 
+## How to use
+1. `git clone` 
+2. Make sure you have an `ARN.py` file containing a variable named `ARN` which points to your topic ARN
+3. Ensure that aws-cli tools are configured
+4. Build using `deployment.sh`
+
 ## Packages
 - BeautifulSoup4
 - requests
