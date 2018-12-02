@@ -55,10 +55,9 @@ def send_sns_message(client, ARN, msg):
     )
     return None
 
-def lambda_handler():
+def lambda_handler(request,context):
     # init and get html/soup
     cfg = initialise('https://eflash-sg.doverstreetmarket.com/password')
-    ARN = ARN
     html_text = get_page(cfg.target)
     soup = get_soup(html_text)
     
@@ -67,9 +66,9 @@ def lambda_handler():
 
     # is img inside?
     if check_image(soup):
-        send_sns_message(client, ARN, "Website has changed! Quickly go to website now!")
+        pass
     else:
-        send_sns_message(client, ARN, "Scanned! No changes found.")
+        send_sns_message(client, ARN, "Website has changed! Quickly go to website now!")
     
     return None
 
