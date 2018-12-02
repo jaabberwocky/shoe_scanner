@@ -32,12 +32,17 @@ def get_soup(html):
 def check_image(soup):
     '''
     Checks if image is returning from the same source (which shows the e-flash opening soon sign)
+    Returns none if nothing is found
     '''
-    image_src = soup.find_all('img')[0]['src']
-    if image_src == '//cdn.shopify.com/s/files/1/1994/0655/t/1/assets/password.png?6921477390879209528':
-        return True
-    else:
-        return False
+    image_list = soup.find_all('img')
+    if len(image_list) == 0:
+        return None
+    else: 
+        image_src = soup.find_all('img')[0]['src']
+        if image_src == '//cdn.shopify.com/s/files/1/1994/0655/t/1/assets/password.png?6921477390879209528':
+            return True
+        else:
+            return False
 
 def get_sns_client():
     '''
@@ -74,6 +79,7 @@ def lambda_handler(request,context):
     if check_image(soup):
         print("Website scanned, nothing to report")
     else:
+        print("Website scannde, site changed!")
         send_sns_message(client, ARN, "Website has changed! Quickly go to website now!")
     
     return None
