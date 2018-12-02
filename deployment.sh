@@ -20,4 +20,5 @@ zip -r9 ../function.zip .
 
 cd ..
 
+echo "Sending to AWS Lambda..."
 aws lambda update-function-code --function-name shoe_scanner --zip-file fileb://function.zip
