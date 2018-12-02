@@ -4,7 +4,7 @@
 
 echo "Removing dist folder..."
 rm -rf dist
-echo "Creating dist folder"
+echo "Creating dist folder..."
 mkdir -p dist
 echo "Copying site-packages libraries..."
 cp -rf venv/Lib/site-packages/* dist

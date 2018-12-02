@@ -79,7 +79,7 @@ def lambda_handler(request,context):
     if check_image(soup):
         print("Website scanned, nothing to report")
     else:
-        print("Website scannde, site changed!")
+        print("Website scanned, site changed!")
         send_sns_message(client, ARN, "Website has changed! Quickly go to website now!")
     
     return None
