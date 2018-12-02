@@ -8,3 +8,5 @@ If it **indeed** has changed, a SMS is sent to subscribed users to alert them.
 - BeautifulSoup4
 - requests
 - boto3
+
+*full list of packages can be found in requirements.txt*
