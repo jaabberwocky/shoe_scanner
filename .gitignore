@@ -2,3 +2,4 @@ venv/
 .vscode/
 ARN*
 function*
+dist/
