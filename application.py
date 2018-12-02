@@ -56,6 +56,9 @@ def send_sns_message(client, ARN, msg):
     return None
 
 def lambda_handler(request,context):
+    '''
+    lambda handler for AWS, note that you request and context is asked, but not used
+    '''
     # init and get html/soup
     cfg = initialise('https://eflash-sg.doverstreetmarket.com/password')
     html_text = get_page(cfg.target)
