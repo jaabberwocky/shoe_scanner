@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# note if you're running this in WSL Linux you have to use dos2unix before running to ensure compatibility...
+
 echo "Removing dist folder..."
 rm -rf dist
 echo "Creating dist folder"
