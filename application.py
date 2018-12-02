@@ -1,6 +1,7 @@
 from config import ProductionConfiguration, TestConfiguration
 import boto3
 import requests
+from ARN import ARN
 from bs4 import BeautifulSoup
 
 def initialise(URL):
@@ -37,12 +38,40 @@ def check_image(soup):
         return True
     else:
         return False
-    
 
-if __name__ == "__main__":
+def get_sns_client():
+    '''
+    Returns SNS client obj
+    '''
+    return boto3.client('sns')
 
+def send_sns_message(client, ARN, msg):
+    '''
+    Sends SNS message to topic
+    '''
+    r = client.publish(
+        TopicArn=ARN,
+        Message=msg
+    )
+    return None
+
+def lambda_handler():
+    # init and get html/soup
     cfg = initialise('https://eflash-sg.doverstreetmarket.com/password')
+    ARN = ARN
     html_text = get_page(cfg.target)
     soup = get_soup(html_text)
-    print(soup.title)
+    
+    # open sns client
+    client = get_sns_client()
+
+    # is img inside?
+    if check_image(soup):
+        send_sns_message(client, ARN, "Website has changed! Quickly go to website now!")
+    else:
+        send_sns_message(client, ARN, "Scanned! No changes found.")
+    
+    return None
+
+    
 
