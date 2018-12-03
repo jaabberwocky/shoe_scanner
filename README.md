@@ -2,6 +2,9 @@
 
 Uses a simple requests/BS4 combination, along with AWS Lambda and SNS topic, to automatically scan a website to see if it changed. Website is here: [URL](https://eflash-sg.doverstreetmarket.com/password).
 
+Architecture:
+![architecture](https://s3-ap-southeast-1.amazonaws.com/tobiasleong/lambda_architecture.PNG)
+
 If it **indeed** has changed, a SMS is sent to subscribed users to alert them.
 
 ## How to use
